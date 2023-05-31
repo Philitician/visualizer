@@ -2,7 +2,7 @@
 	"name": "@philitician/visualizer",
 	"repository": "https://github.com/philitician/visualizer",
 	"homepage": "https://github.com/philitician/visualizer/readme.md",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license": "MIT",
 	"bin": "dist/cli.js",
 	"type": "module",
