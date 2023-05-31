@@ -20,6 +20,6 @@ $ visualizer --help
     --name  Your name
 
   Examples
-    $ visualizer --name=Jane
-    Hello, Jane
+    $ visualizer --name=John
+    Hello, John
 ```
