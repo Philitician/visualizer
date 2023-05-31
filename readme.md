@@ -14,6 +14,13 @@ or use directly with npx
 $ npx @philitician/visualizer
 ```
 
+make sure to include your OPENAPI_API_KEY in your .env or .env.local file
+
+```bash
+# .env.local
+OPENAPI_API_KEY=yourkeyhere
+```
+
 ## CLI
 
 ```
