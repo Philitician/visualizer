@@ -1,5 +1,5 @@
 {
-	"version": "0.0.4",
+	"version": "0.0.8",
 	"name": "@philitician/visualizer",
 	"repository": "https://github.com/philitician/visualizer",
 	"homepage": "https://github.com/philitician/visualizer/readme.md",
@@ -21,7 +21,8 @@
 		"ink": "^4.2.0",
 		"pastel": "^2.0.1",
 		"react": "^18.2.0",
-		"zod": "^3.21.4"
+		"zod": "^3.21.4",
+		"langchain": "^0.0.86"
 	},
 	"devDependencies": {
 		"@sindresorhus/tsconfig": "^3.0.1",
@@ -33,7 +34,6 @@
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"ink-testing-library": "^3.0.0",
-		"langchain": "^0.0.86",
 		"prettier": "^2.8.8",
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4",

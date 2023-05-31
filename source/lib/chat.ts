@@ -5,27 +5,29 @@ const chat = new ChatOpenAI({
 	modelName: 'gpt-3.5-turbo',
 });
 
-const primerWithFileStructure = `
-You are an assistant to help users build diagram with Mermaid.
-You will combine both a project file structure and a description to generate a Mermaid code block.
+// const primerWithFileStructure = `
+// You are an assistant to help users build diagram with Mermaid.
+// You will combine both a project file structure and a description to generate a Mermaid code block.
+// You only need to return the output Mermaid code block.
+// Do not include any description, do not include the \`\`\`.
+// Code (no \`\`\`):
+// `;
+
+const createDiagramPrimer = (diagramType: string) => `
+You are an assistant to help users build a ${diagramType} diagram with Mermaid.
 You only need to return the output Mermaid code block.
 Do not include any description, do not include the \`\`\`.
 Code (no \`\`\`):
 `;
 
-const primerSimple = `
-You are an assistant to help users build diagram with Mermaid.
-You only need to return the output Mermaid code block.
-Do not include any description, do not include the \`\`\`.
-Code (no \`\`\`):
-`;
-
-export async function generateMermaidCode(input: string) {
+export async function generateMermaidCode(
+	fileInput: string,
+	diagramType: string = 'graph',
+) {
+	const primer = createDiagramPrimer(diagramType);
 	const res = await chat.call([
-		new SystemChatMessage(primerSimple),
-		// new SystemChatMessage(`Project file structure: ${input}`),
-		new HumanChatMessage(input),
-		// new HumanChatMessage(`Description: ${input}`),
+		new SystemChatMessage(primer),
+		new HumanChatMessage(fileInput),
 	]);
 	const mermaidCode = res.text.trim();
 	return mermaidCode;

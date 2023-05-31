@@ -16,6 +16,20 @@ export const options = z.object({
 		.string()
 		.default('output/mermaid.md')
 		.describe('Path to output mdx file'),
+	type: z
+		.enum([
+			'graph',
+			'flowchart',
+			'sequenceDiagram',
+			'classDiagram',
+			'stateDiagram',
+			'gantt',
+			'pie',
+			'er',
+			'journey',
+		])
+		.default('graph')
+		.describe('Type of mermaid diagram'),
 });
 
 type Props = {
