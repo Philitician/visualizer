@@ -27,12 +27,15 @@ OPENAPI_API_KEY=yourkeyhere
 $ @philitician/visualizer --help
 
   Usage
-    $ @philitician/visualizer
+    $ @philitician/visualizer generate [options]
 
   Options
-    --name  Your name
+    --input <input>  Path to the input file (default: readme.md)
+    --output <output>  Path to the output file (default: output/mermaid.md)
+    --type <type>  Type of mermaid diagram to generate (default: graph)
 
   Examples
-    $ @philitician/visualizer --name=Kari
-    Hello, Kari
+    $ npx @philitician/visualizer generate
+    $ npx @philitician/visualizer generate --input your-markdown-input.md --output output/your-mermaid-output.md --type flowchart
+
 ```
