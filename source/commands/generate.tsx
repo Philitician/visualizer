@@ -11,11 +11,8 @@ export const options = z.object({
 	input: z
 		.string()
 		.default('readme.md')
-		.describe('Path to input md of mdx file'),
-	output: z
-		.string()
-		.default('output/mermaid.md')
-		.describe('Path to output mdx file'),
+		.describe('Path to input md or mdx file'),
+	output: z.string().default('output').describe('Path to output folder'),
 	type: z
 		.enum([
 			'graph',
@@ -36,14 +33,21 @@ type Props = {
 	options: z.infer<typeof options>;
 };
 
-export default function Index({options: {input, output}}: Props) {
+const writeOutput = (output: string, content: string, type: string) => {
+	const outputDir = path.resolve(process.cwd(), output);
+	if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, {recursive: true});
+	const filePath = `${outputDir}/${type}.md`;
+	fs.writeFileSync(filePath, content);
+};
+
+export default function Index({options: {input, output, type}}: Props) {
 	const filePath = path.resolve(process.cwd(), input);
 	const fileContent = fs.readFileSync(filePath, 'utf-8');
-	const [mermaidCode, setMermaidCode] = useState<string | undefined>();
+	const [mermaidContent, setMermaidContent] = useState<string | undefined>();
 	const generateMermaidCodeAsync = async () => {
-		const code = await generateMermaidCode(fileContent);
-		fs.writeFileSync(output, code);
-		setMermaidCode(code);
+		const content = await generateMermaidCode(fileContent, type);
+		writeOutput(output, content, type);
+		setMermaidContent(content);
 	};
 
 	useEffect(() => {
@@ -53,7 +57,7 @@ export default function Index({options: {input, output}}: Props) {
 
 	return (
 		<Text>
-			{mermaidCode && (
+			{mermaidContent && (
 				<Text>
 					<Text color="green">Success!</Text>
 					<Text>

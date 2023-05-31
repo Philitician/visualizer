@@ -1,3 +1,5 @@
+// This code is not yet being used
+
 import fs from 'fs';
 
 const excludedFiles = [
